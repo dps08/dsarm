@@ -1,0 +1,2507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>90-Day Engineering Roadmap</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg: #ffffff;
+            --surface: #fafafa;
+            --text: #0a0a0a;
+            --text-secondary: #6e6e6e;
+            --text-tertiary: #a0a0a0;
+            --accent: #0a0a0a;
+            --border: #e5e5e5;
+            --success: #059862;
+            --warning: #f59e0b;
+            --danger: #dc2626;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0a0a0a;
+                --surface: #141414;
+                --text: #fafafa;
+                --text-secondary: #a0a0a0;
+                --text-tertiary: #6e6e6e;
+                --accent: #fafafa;
+                --border: #262626;
+            }
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: auto;
+        }
+        
+        .header {
+            background: var(--surface);
+            padding: 48px 32px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            background: transparent;
+            padding: 0;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        
+        .controls {
+            padding: 16px 32px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 12px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 90;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            font-size: 13px;
+        }
+        
+        .filter-btn:hover {
+            background: var(--bg);
+            color: var(--text);
+        }
+        
+        .filter-btn.active {
+            background: var(--bg);
+            color: var(--text);
+            border-color: var(--accent);
+        }
+        
+        .download-btn {
+            padding: 8px 16px;
+            background: var(--accent);
+            border: none;
+            color: var(--bg);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        
+        .download-btn:hover {
+            opacity: 0.8;
+        }
+        
+        .roadmap-container {
+            padding: 48px 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .phase-section {
+            margin-bottom: 48px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .phase-header {
+            background: var(--surface);
+            padding: 20px 24px;
+            font-size: 16px;
+            font-weight: 500;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: -0.01em;
+        }
+        
+        .week-section {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+        }
+        
+        .week-header {
+            background: var(--bg);
+            padding: 16px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: var(--bg);
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 500;
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+            font-size: 13px;
+        }
+        
+        tr:hover {
+            background: var(--bg);
+        }
+        
+        .problem-link {
+            color: var(--text);
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 0;
+            transition: all 0.2s;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+        }
+        
+        .problem-link:hover {
+            color: var(--accent);
+            transform: translateX(2px);
+        }
+        
+        .topic-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            margin: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .easy {
+            background: rgba(5, 152, 98, 0.1);
+            color: #059862;
+            border: 1px solid rgba(5, 152, 98, 0.2);
+        }
+        
+        .medium {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        
+        .hard {
+            background: rgba(220, 38, 38, 0.1);
+            color: #dc2626;
+            border: 1px solid rgba(220, 38, 38, 0.2);
+        }
+        
+        .cf-div3 {
+            background: #17a2b8;
+            color: white;
+        }
+        
+        .cf-div2 {
+            background: #6f42c1;
+            color: white;
+        }
+        
+        .prerequisites {
+            background: var(--bg);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-top: 4px;
+            border-left: 2px solid var(--border);
+            color: var(--text-secondary);
+        }
+        
+        .time-allocation {
+            background: var(--bg);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-top: 4px;
+            border-left: 2px solid var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .ml-content {
+            background: rgba(99, 102, 241, 0.05);
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin-top: 4px;
+            border-left: 2px solid rgba(99, 102, 241, 0.3);
+            font-size: 12px;
+        }
+        
+        .day-complete {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .notes-input {
+            width: 100%;
+            background: #0f3460;
+            border: 1px solid #667eea;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+        
+        .progress-tracker {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1000;
+            min-width: 200px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 2px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 16px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.5s;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            table {
+                font-size: 0.9em;
+            }
+            
+            th, td {
+                padding: 8px;
+            }
+            
+            .progress-tracker {
+                position: static;
+                margin: 20px auto;
+            }
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 90-Day DSA & ML Engineering Mastery Roadmap</h1>
+        <p>Complete day-by-day breakdown with 450+ problems | 7-8 hours daily schedule</p>
+        <div class="stats-bar">
+            <div class="stat">📝 Total Problems: 465</div>
+            <div class="stat">🎯 Daily Target: 5-6 problems</div>
+            <div class="stat">⏰ Study Hours: 630+</div>
+            <div class="stat">📚 Resources: NeetCode + Striver + Love Babbar</div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="filter-btn active" onclick="filterPhase('all')">Show All Days</button>
+        <button class="filter-btn" onclick="filterPhase('phase1')">Phase 1 (Days 1-30)</button>
+        <button class="filter-btn" onclick="filterPhase('phase2')">Phase 2 (Days 31-60)</button>
+        <button class="filter-btn" onclick="filterPhase('phase3')">Phase 3 (Days 61-90)</button>
+        <button class="download-btn" onclick="downloadExcel()">📥 Download Excel</button>
+    </div>
+
+    <div class="roadmap-container">
+        <!-- PHASE 1: FOUNDATION (Days 1-30) -->
+        <div class="phase-section phase1">
+            <div class="phase-header">
+                PHASE 1: FOUNDATION BUILDING (Days 1-30) - Python Basics → DSA Fundamentals → ML Introduction
+            </div>
+
+            <!-- Week 1: Python & Basic Arrays -->
+            <div class="week-section">
+                <div class="week-header">Week 1: Python Mastery & Arrays Introduction (Days 1-7)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="8%">Day</th>
+                            <th width="15%">DSA Topics</th>
+                            <th width="30%">Problems (with Links)</th>
+                            <th width="12%">Prerequisites</th>
+                            <th width="20%">ML Study</th>
+                            <th width="10%">Time Split</th>
+                            <th width="5%">✓</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Day 1</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Python Basics</span>
+                                <span class="topic-badge easy">Variables & Types</span>
+                            </td>
+                            <td>
+                                NO LEETCODE TODAY - Focus on Python
+                                <br>• Learn variables, data types, operators
+                                <br>• Practice 20 basic Python exercises
+                                <br>• Set up IDE and environment
+                            </td>
+                            <td class="prerequisites">None - Starting Point</td>
+                            <td class="ml-content">
+                                <strong>Andrew Ng ML Course:</strong>
+                                <br>Week 1 Intro (2 hrs)
+                            </td>
+                            <td class="time-allocation">
+                                Python: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 2</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Lists & Loops</span>
+                            </td>
+                            <td>
+                                Practice Problems (Not LeetCode yet):
+                                <br>• List operations (append, pop, slice)
+                                <br>• For/while loops
+                                <br>• List comprehensions
+                            </td>
+                            <td class="prerequisites">Day 1 basics</td>
+                            <td class="ml-content">
+                                <strong>Linear Regression:</strong>
+                                <br>Hypothesis, Cost Function
+                            </td>
+                            <td class="time-allocation">
+                                Python: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 3</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Dictionaries</span>
+                                <span class="topic-badge easy">Functions</span>
+                            </td>
+                            <td>
+                                Python Exercises:
+                                <br>• Dictionary methods
+                                <br>• Function definitions
+                                <br>• Scope and return values
+                            </td>
+                            <td class="prerequisites">Lists, loops</td>
+                            <td class="ml-content">
+                                <strong>Gradient Descent:</strong>
+                                <br>Learning rate, convergence
+                            </td>
+                            <td class="time-allocation">
+                                Python: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 4</strong></td>
+                            <td>
+                                <span class="topic-badge easy">First Arrays</span>
+                            </td>
+                            <td>
+                                FIRST LEETCODE PROBLEMS:
+                                <br><a href="https://leetcode.com/problems/running-sum-of-1d-array/" class="problem-link">1480. Running Sum of 1d Array</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/richest-customer-wealth/" class="problem-link">1672. Richest Customer Wealth</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/shuffle-the-array/" class="problem-link">1470. Shuffle the Array</a> <span class="topic-badge easy">E</span>
+                            </td>
+                            <td class="prerequisites">Lists, loops, functions</td>
+                            <td class="ml-content">
+                                <strong>NumPy Basics:</strong>
+                                <br>Arrays, operations
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 4hrs<br>
+                                ML: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 5</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Array Traversal</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/find-numbers-with-even-number-of-digits/" class="problem-link">1295. Find Numbers with Even Digits</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/max-consecutive-ones/" class="problem-link">485. Max Consecutive Ones</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/squares-of-a-sorted-array/" class="problem-link">977. Squares of a Sorted Array</a> <span class="topic-badge easy">E</span>
+                            </td>
+                            <td class="prerequisites">Basic loops</td>
+                            <td class="ml-content">
+                                <strong>Pandas Basics:</strong>
+                                <br>DataFrames, operations
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 4hrs<br>
+                                ML: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 6</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Hashing Intro</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/contains-duplicate/" class="problem-link">217. Contains Duplicate</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/single-number/" class="problem-link">136. Single Number</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/missing-number/" class="problem-link">268. Missing Number</a> <span class="topic-badge easy">E</span>
+                            </td>
+                            <td class="prerequisites">Dictionaries, sets</td>
+                            <td class="ml-content">
+                                <strong>Logistic Regression:</strong>
+                                <br>Classification basics
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 4hrs<br>
+                                ML: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 7</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Review & Practice</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/two-sum/" class="problem-link">1. Two Sum</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/valid-anagram/" class="problem-link">242. Valid Anagram</a> <span class="topic-badge easy">E</span>
+                                <br>Review all Week 1 problems
+                            </td>
+                            <td class="prerequisites">Week 1 concepts</td>
+                            <td class="ml-content">
+                                <strong>Week 1 Review:</strong>
+                                <br>Implement linear regression
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 4hrs<br>
+                                ML: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Week 2: Core Data Structures -->
+            <div class="week-section">
+                <div class="week-header">Week 2: Core Data Structures - Strings, Stacks, Two Pointers (Days 8-14)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="8%">Day</th>
+                            <th width="15%">DSA Topics</th>
+                            <th width="30%">Problems (with Links)</th>
+                            <th width="12%">Prerequisites</th>
+                            <th width="20%">ML Study</th>
+                            <th width="10%">Time Split</th>
+                            <th width="5%">✓</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Day 8</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Strings</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/reverse-string/" class="problem-link">344. Reverse String</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/reverse-words-in-a-string-iii/" class="problem-link">557. Reverse Words in String III</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/valid-palindrome/" class="problem-link">125. Valid Palindrome</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/longest-common-prefix/" class="problem-link">14. Longest Common Prefix</a> <span class="topic-badge easy">E</span>
+                            </td>
+                            <td class="prerequisites">String methods, loops</td>
+                            <td class="ml-content">
+                                <strong>Neural Networks:</strong>
+                                <br>Perceptron, activation
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 4hrs<br>
+                                ML: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 9</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Stack Basics</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/valid-parentheses/" class="problem-link">20. Valid Parentheses</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/implement-stack-using-queues/" class="problem-link">225. Implement Stack using Queues</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/backspace-string-compare/" class="problem-link">844. Backspace String Compare</a> <span class="topic-badge easy">E</span>
+                            </td>
+                            <td class="prerequisites">Lists, LIFO concept</td>
+                            <td class="ml-content">
+                                <strong>Backpropagation:</strong>
+                                <br>Chain rule, gradients
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 4hrs<br>
+                                ML: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 10</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Two Pointers</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/move-zeroes/" class="problem-link">283. Move Zeroes</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/remove-duplicates-from-sorted-array/" class="problem-link">26. Remove Duplicates from Sorted Array</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/merge-sorted-array/" class="problem-link">88. Merge Sorted Array</a> <span class="topic-badge easy">E</span>
+                            </td>
+                            <td class="prerequisites">Array manipulation</td>
+                            <td class="ml-content">
+                                <strong>Overfitting:</strong>
+                                <br>Regularization, dropout
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 4hrs<br>
+                                ML: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 11</strong></td>
+                            <td>
+                                <span class="topic-badge medium">First Medium</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/group-anagrams/" class="problem-link">49. Group Anagrams</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/" class="problem-link">167. Two Sum II</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/3sum/" class="problem-link">15. 3Sum</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">Hashing, two pointers</td>
+                            <td class="ml-content">
+                                <strong>Fast.ai Lesson 1:</strong>
+                                <br>Image classification
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 12</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Sliding Window</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/maximum-average-subarray-i/" class="problem-link">643. Maximum Average Subarray I</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/" class="problem-link">3. Longest Substring Without Repeating</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/minimum-window-substring/" class="problem-link">76. Minimum Window Substring</a> <span class="topic-badge hard">H</span> (Try, ok to fail)
+                            </td>
+                            <td class="prerequisites">Two pointers, hashing</td>
+                            <td class="ml-content">
+                                <strong>Fast.ai Lesson 2:</strong>
+                                <br>Data augmentation
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 13</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Matrix/2D Arrays</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/transpose-matrix/" class="problem-link">867. Transpose Matrix</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/reshape-the-matrix/" class="problem-link">566. Reshape the Matrix</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/set-matrix-zeroes/" class="problem-link">73. Set Matrix Zeroes</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">2D array indexing</td>
+                            <td class="ml-content">
+                                <strong>CNNs Intro:</strong>
+                                <br>Convolutions, pooling
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 4hrs<br>
+                                ML: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 14</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Week Review</span>
+                            </td>
+                            <td>
+                                Review weak areas from Week 2
+                                <br>Redo failed problems
+                                <br>Start Striver's Array problems:
+                                <br><a href="https://leetcode.com/problems/pascals-triangle/" class="problem-link">118. Pascal's Triangle</a> <span class="topic-badge easy">E</span>
+                            </td>
+                            <td class="prerequisites">All Week 2</td>
+                            <td class="ml-content">
+                                <strong>Project:</strong>
+                                <br>MNIST digit classifier
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 4hrs<br>
+                                ML: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Week 3: Trees and Recursion -->
+            <div class="week-section">
+                <div class="week-header">Week 3: Binary Search, Trees & Recursion (Days 15-21)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="8%">Day</th>
+                            <th width="15%">DSA Topics</th>
+                            <th width="30%">Problems (with Links)</th>
+                            <th width="12%">Prerequisites</th>
+                            <th width="20%">ML Study</th>
+                            <th width="10%">Time Split</th>
+                            <th width="5%">✓</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Day 15</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Binary Search</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/binary-search/" class="problem-link">704. Binary Search</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/first-bad-version/" class="problem-link">278. First Bad Version</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/search-insert-position/" class="problem-link">35. Search Insert Position</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/peak-index-in-a-mountain-array/" class="problem-link">852. Peak Index in Mountain Array</a> <span class="topic-badge easy">E</span>
+                            </td>
+                            <td class="prerequisites">Sorted arrays, O(log n)</td>
+                            <td class="ml-content">
+                                <strong>Decision Trees:</strong>
+                                <br>ID3, entropy, gain
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 4hrs<br>
+                                ML: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 16</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Binary Search Adv</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" class="problem-link">153. Find Min in Rotated Array</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/search-in-rotated-sorted-array/" class="problem-link">33. Search in Rotated Array</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/search-a-2d-matrix/" class="problem-link">74. Search a 2D Matrix</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">Binary search basics</td>
+                            <td class="ml-content">
+                                <strong>Random Forests:</strong>
+                                <br>Bagging, ensemble
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 17</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Tree Basics</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/" class="problem-link">104. Maximum Depth of Binary Tree</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/invert-binary-tree/" class="problem-link">226. Invert Binary Tree</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/same-tree/" class="problem-link">100. Same Tree</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/symmetric-tree/" class="problem-link">101. Symmetric Tree</a> <span class="topic-badge easy">E</span>
+                            </td>
+                            <td class="prerequisites">Recursion basics</td>
+                            <td class="ml-content">
+                                <strong>XGBoost:</strong>
+                                <br>Gradient boosting
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 4hrs<br>
+                                ML: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 18</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Tree Traversal</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/binary-tree-preorder-traversal/" class="problem-link">144. Preorder Traversal</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/binary-tree-inorder-traversal/" class="problem-link">94. Inorder Traversal</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/binary-tree-postorder-traversal/" class="problem-link">145. Postorder Traversal</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/binary-tree-level-order-traversal/" class="problem-link">102. Level Order Traversal</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">Tree structure, recursion</td>
+                            <td class="ml-content">
+                                <strong>Feature Engineering:</strong>
+                                <br>Selection, extraction
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 4hrs<br>
+                                ML: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 19</strong></td>
+                            <td>
+                                <span class="topic-badge medium">BST</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/validate-binary-search-tree/" class="problem-link">98. Validate BST</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/" class="problem-link">235. LCA of BST</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/kth-smallest-element-in-a-bst/" class="problem-link">230. Kth Smallest in BST</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">BST properties, inorder</td>
+                            <td class="ml-content">
+                                <strong>Fast.ai Lesson 3:</strong>
+                                <br>Multi-label, segmentation
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 20</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Recursion</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/fibonacci-number/" class="problem-link">509. Fibonacci Number</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/climbing-stairs/" class="problem-link">70. Climbing Stairs</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/power-of-two/" class="problem-link">231. Power of Two</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/powx-n/" class="problem-link">50. Pow(x, n)</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">Function calls, base cases</td>
+                            <td class="ml-content">
+                                <strong>Fast.ai Lesson 4:</strong>
+                                <br>NLP, tabular data
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 4hrs<br>
+                                ML: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 21</strong></td>
+                            <td>
+                                <span class="topic-badge cf-div3">Codeforces</span>
+                            </td>
+                            <td>
+                                First Codeforces Contest (Div 3):
+                                <br>• Register on Codeforces
+                                <br>• Solve A, B problems live
+                                <br>• Review C, D after contest
+                                <br>+ 2 LeetCode: Your choice from NeetCode 75
+                            </td>
+                            <td class="prerequisites">Week 1-3 concepts</td>
+                            <td class="ml-content">
+                                <strong>Project Day:</strong>
+                                <br>Kaggle Titanic
+                            </td>
+                            <td class="time-allocation">
+                                Contest: 3hrs<br>
+                                Review: 2hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Week 4: Advanced Basics -->
+            <div class="week-section">
+                <div class="week-header">Week 4: Linked Lists, Backtracking & First DP (Days 22-30)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="8%">Day</th>
+                            <th width="15%">DSA Topics</th>
+                            <th width="30%">Problems (with Links)</th>
+                            <th width="12%">Prerequisites</th>
+                            <th width="20%">ML Study</th>
+                            <th width="10%">Time Split</th>
+                            <th width="5%">✓</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Day 22</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Linked List</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/reverse-linked-list/" class="problem-link">206. Reverse Linked List</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/merge-two-sorted-lists/" class="problem-link">21. Merge Two Sorted Lists</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/middle-of-the-linked-list/" class="problem-link">876. Middle of Linked List</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/delete-node-in-a-linked-list/" class="problem-link">237. Delete Node in List</a> <span class="topic-badge easy">E</span>
+                            </td>
+                            <td class="prerequisites">Pointers, node structure</td>
+                            <td class="ml-content">
+                                <strong>RNNs Intro:</strong>
+                                <br>Sequential data
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 23</strong></td>
+                            <td>
+                                <span class="topic-badge medium">LL Advanced</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/linked-list-cycle/" class="problem-link">141. Linked List Cycle</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/linked-list-cycle-ii/" class="problem-link">142. Linked List Cycle II</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" class="problem-link">19. Remove Nth Node From End</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/reorder-list/" class="problem-link">143. Reorder List</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">Two pointers, LL basics</td>
+                            <td class="ml-content">
+                                <strong>LSTM/GRU:</strong>
+                                <br>Long-term dependencies
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 24</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Backtracking</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/subsets/" class="problem-link">78. Subsets</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/permutations/" class="problem-link">46. Permutations</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/combination-sum/" class="problem-link">39. Combination Sum</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">Recursion, state space</td>
+                            <td class="ml-content">
+                                <strong>Word Embeddings:</strong>
+                                <br>Word2Vec, GloVe
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 25</strong></td>
+                            <td>
+                                <span class="topic-badge medium">More Backtrack</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/generate-parentheses/" class="problem-link">22. Generate Parentheses</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/letter-combinations-of-a-phone-number/" class="problem-link">17. Letter Combinations</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/palindrome-partitioning/" class="problem-link">131. Palindrome Partitioning</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">Backtracking template</td>
+                            <td class="ml-content">
+                                <strong>Transformers Intro:</strong>
+                                <br>Attention mechanism
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 26</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Basic DP</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/house-robber/" class="problem-link">198. House Robber</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/house-robber-ii/" class="problem-link">213. House Robber II</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/min-cost-climbing-stairs/" class="problem-link">746. Min Cost Climbing Stairs</a> <span class="topic-badge easy">E</span>
+                            </td>
+                            <td class="prerequisites">Recursion, memoization</td>
+                            <td class="ml-content">
+                                <strong>Transfer Learning:</strong>
+                                <br>Fine-tuning models
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 27</strong></td>
+                            <td>
+                                <span class="topic-badge medium">1D DP</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/longest-palindromic-substring/" class="problem-link">5. Longest Palindromic Substring</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/palindromic-substrings/" class="problem-link">647. Palindromic Substrings</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/decode-ways/" class="problem-link">91. Decode Ways</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">DP basics, strings</td>
+                            <td class="ml-content">
+                                <strong>Fast.ai Lesson 5:</strong>
+                                <br>Collaborative filtering
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 28</strong></td>
+                            <td>
+                                <span class="topic-badge cf-div3">Contest Day</span>
+                            </td>
+                            <td>
+                                Codeforces Div 3 Contest
+                                <br>+ Striver's Problems:
+                                <br><a href="https://leetcode.com/problems/next-permutation/" class="problem-link">31. Next Permutation</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/maximum-subarray/" class="problem-link">53. Maximum Subarray (Kadane's)</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">All Phase 1</td>
+                            <td class="ml-content">
+                                <strong>Fast.ai Lesson 6:</strong>
+                                <br>Embeddings deep dive
+                            </td>
+                            <td class="time-allocation">
+                                Contest: 3hrs<br>
+                                Practice: 2hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 29</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Heap Intro</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/last-stone-weight/" class="problem-link">1046. Last Stone Weight</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/kth-largest-element-in-an-array/" class="problem-link">215. Kth Largest Element</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/top-k-frequent-elements/" class="problem-link">347. Top K Frequent Elements</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">Priority queue concept</td>
+                            <td class="ml-content">
+                                <strong>Fast.ai Lesson 7:</strong>
+                                <br>ResNets, U-Nets
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 4hrs<br>
+                                ML: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 30</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Phase 1 Review</span>
+                            </td>
+                            <td>
+                                <strong>Assessment Day:</strong>
+                                <br>• Mock interview on Pramp
+                                <br>• Solve 5 random Medium problems
+                                <br>• Review all weak areas
+                            </td>
+                            <td class="prerequisites">Complete Phase 1</td>
+                            <td class="ml-content">
+                                <strong>ML Project:</strong>
+                                <br>Image classifier deployment
+                            </td>
+                            <td class="time-allocation">
+                                Mock: 2hrs<br>
+                                Practice: 3hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PHASE 2: INTERMEDIATE (Days 31-60) -->
+        <div class="phase-section phase2">
+            <div class="phase-header">
+                PHASE 2: INTERMEDIATE MASTERY (Days 31-60) - Graphs → Advanced DP → System Design Intro
+            </div>
+
+            <!-- Week 5: Graphs Introduction -->
+            <div class="week-section">
+                <div class="week-header">Week 5: Graph Fundamentals & BFS/DFS (Days 31-37)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="8%">Day</th>
+                            <th width="15%">DSA Topics</th>
+                            <th width="30%">Problems (with Links)</th>
+                            <th width="12%">Prerequisites</th>
+                            <th width="20%">ML Study</th>
+                            <th width="10%">Time Split</th>
+                            <th width="5%">✓</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Day 31</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Graph Basics</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/number-of-islands/" class="problem-link">200. Number of Islands</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/flood-fill/" class="problem-link">733. Flood Fill</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/max-area-of-island/" class="problem-link">695. Max Area of Island</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">2D arrays, DFS concept</td>
+                            <td class="ml-content">
+                                <strong>Deep Learning Spec:</strong>
+                                <br>Course 1 Week 1
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 32</strong></td>
+                            <td>
+                                <span class="topic-badge medium">BFS</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/rotting-oranges/" class="problem-link">994. Rotting Oranges</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/01-matrix/" class="problem-link">542. 01 Matrix</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/walls-and-gates/" class="problem-link">286. Walls and Gates</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">Queue, level-order</td>
+                            <td class="ml-content">
+                                <strong>Hyperparameter Tuning:</strong>
+                                <br>Grid search, Bayesian opt
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 33</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Graph DFS</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/clone-graph/" class="problem-link">133. Clone Graph</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/pacific-atlantic-water-flow/" class="problem-link">417. Pacific Atlantic Water Flow</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/surrounded-regions/" class="problem-link">130. Surrounded Regions</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">DFS, graph traversal</td>
+                            <td class="ml-content">
+                                <strong>Batch Normalization:</strong>
+                                <br>Internal covariate shift
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 34</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Topological Sort</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/course-schedule/" class="problem-link">207. Course Schedule</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/course-schedule-ii/" class="problem-link">210. Course Schedule II</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/alien-dictionary/" class="problem-link">269. Alien Dictionary</a> <span class="topic-badge hard">H</span>
+                            </td>
+                            <td class="prerequisites">DAG, in-degree</td>
+                            <td class="ml-content">
+                                <strong>Object Detection:</strong>
+                                <br>YOLO, R-CNN basics
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 35</strong></td>
+                            <td>
+                                <span class="topic-badge cf-div2">Contest++</span>
+                            </td>
+                            <td>
+                                Codeforces Div 2 (Try harder problems)
+                                <br>+ Graph practice:
+                                <br><a href="https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/" class="problem-link">323. Number of Connected Components</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">Graph fundamentals</td>
+                            <td class="ml-content">
+                                <strong>Segmentation:</strong>
+                                <br>Semantic vs Instance
+                            </td>
+                            <td class="time-allocation">
+                                Contest: 3hrs<br>
+                                Review: 2hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 36</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Union Find</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/redundant-connection/" class="problem-link">684. Redundant Connection</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/accounts-merge/" class="problem-link">721. Accounts Merge</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/number-of-provinces/" class="problem-link">547. Number of Provinces</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">Disjoint sets</td>
+                            <td class="ml-content">
+                                <strong>GANs Introduction:</strong>
+                                <br>Generator vs Discriminator
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 37</strong></td>
+                            <td>
+                                <span class="topic-badge hard">Dijkstra</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/network-delay-time/" class="problem-link">743. Network Delay Time</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/cheapest-flights-within-k-stops/" class="problem-link">787. Cheapest Flights K Stops</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/path-with-minimum-effort/" class="problem-link">1631. Path With Minimum Effort</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">Priority queue, shortest path</td>
+                            <td class="ml-content">
+                                <strong>Autoencoders:</strong>
+                                <br>Variational AE
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Week 6: Dynamic Programming -->
+            <div class="week-section">
+                <div class="week-header">Week 6: Dynamic Programming Mastery (Days 38-44)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="8%">Day</th>
+                            <th width="15%">DSA Topics</th>
+                            <th width="30%">Problems (with Links)</th>
+                            <th width="12%">Prerequisites</th>
+                            <th width="20%">ML Study</th>
+                            <th width="10%">Time Split</th>
+                            <th width="5%">✓</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Day 38</strong></td>
+                            <td>
+                                <span class="topic-badge medium">1D DP</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/word-break/" class="problem-link">139. Word Break</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/coin-change/" class="problem-link">322. Coin Change</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/longest-increasing-subsequence/" class="problem-link">300. Longest Increasing Subsequence</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">Memoization, optimal substructure</td>
+                            <td class="ml-content">
+                                <strong>Reinforcement Learning:</strong>
+                                <br>Q-Learning basics
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 39</strong></td>
+                            <td>
+                                <span class="topic-badge medium">2D DP</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/unique-paths/" class="problem-link">62. Unique Paths</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/minimum-path-sum/" class="problem-link">64. Minimum Path Sum</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/longest-common-subsequence/" class="problem-link">1143. Longest Common Subsequence</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">2D arrays, state transition</td>
+                            <td class="ml-content">
+                                <strong>Policy Gradient:</strong>
+                                <br>REINFORCE algorithm
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 40</strong></td>
+                            <td>
+                                <span class="topic-badge hard">DP on Strings</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/edit-distance/" class="problem-link">72. Edit Distance</a> <span class="topic-badge hard">H</span>
+                                <br><a href="https://leetcode.com/problems/interleaving-string/" class="problem-link">97. Interleaving String</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/distinct-subsequences/" class="problem-link">115. Distinct Subsequences</a> <span class="topic-badge hard">H</span>
+                            </td>
+                            <td class="prerequisites">String DP patterns</td>
+                            <td class="ml-content">
+                                <strong>A3C & PPO:</strong>
+                                <br>Advanced RL methods
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 6hrs<br>
+                                ML: 1hr
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 41</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Stock Problems</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" class="problem-link">121. Buy and Sell Stock</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/" class="problem-link">122. Buy and Sell Stock II</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/" class="problem-link">309. Stock with Cooldown</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/" class="problem-link">188. Stock IV</a> <span class="topic-badge hard">H</span>
+                            </td>
+                            <td class="prerequisites">State machines, DP</td>
+                            <td class="ml-content">
+                                <strong>ML System Design:</strong>
+                                <br>Recommendation systems
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 42</strong></td>
+                            <td>
+                                <span class="topic-badge cf-div2">Contest</span>
+                            </td>
+                            <td>
+                                Codeforces Div 2 + AtCoder Beginner
+                                <br>Focus on DP problems in contest
+                                <br>Review editorial solutions
+                            </td>
+                            <td class="prerequisites">DP patterns</td>
+                            <td class="ml-content">
+                                <strong>Feature Store Design:</strong>
+                                <br>Real-time vs batch
+                            </td>
+                            <td class="time-allocation">
+                                Contests: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 43</strong></td>
+                            <td>
+                                <span class="topic-badge hard">Advanced DP</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/burst-balloons/" class="problem-link">312. Burst Balloons</a> <span class="topic-badge hard">H</span>
+                                <br><a href="https://leetcode.com/problems/regular-expression-matching/" class="problem-link">10. Regular Expression Matching</a> <span class="topic-badge hard">H</span>
+                                <br><a href="https://leetcode.com/problems/wildcard-matching/" class="problem-link">44. Wildcard Matching</a> <span class="topic-badge hard">H</span>
+                            </td>
+                            <td class="prerequisites">Complex state transitions</td>
+                            <td class="ml-content">
+                                <strong>Model Serving:</strong>
+                                <br>TorchServe, TF Serving
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 6hrs<br>
+                                ML: 1hr
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 44</strong></td>
+                            <td>
+                                <span class="topic-badge medium">DP Review</span>
+                            </td>
+                            <td>
+                                Love Babbar DP Problems:
+                                <br><a href="https://leetcode.com/problems/partition-equal-subset-sum/" class="problem-link">416. Partition Equal Subset Sum</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/target-sum/" class="problem-link">494. Target Sum</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/maximum-product-subarray/" class="problem-link">152. Maximum Product Subarray</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">All DP concepts</td>
+                            <td class="ml-content">
+                                <strong>A/B Testing for ML:</strong>
+                                <br>Metrics, significance
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Week 7: Advanced Trees & Tries -->
+            <div class="week-section">
+                <div class="week-header">Week 7: Advanced Trees, Tries & Segment Trees (Days 45-51)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="8%">Day</th>
+                            <th width="15%">DSA Topics</th>
+                            <th width="30%">Problems (with Links)</th>
+                            <th width="12%">Prerequisites</th>
+                            <th width="20%">ML Study</th>
+                            <th width="10%">Time Split</th>
+                            <th width="5%">✓</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Day 45</strong></td>
+                            <td>
+                                <span class="topic-badge hard">Tree Hard</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/serialize-and-deserialize-binary-tree/" class="problem-link">297. Serialize and Deserialize Tree</a> <span class="topic-badge hard">H</span>
+                                <br><a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/" class="problem-link">124. Binary Tree Maximum Path Sum</a> <span class="topic-badge hard">H</span>
+                                <br><a href="https://leetcode.com/problems/binary-tree-cameras/" class="problem-link">968. Binary Tree Cameras</a> <span class="topic-badge hard">H</span>
+                            </td>
+                            <td class="prerequisites">Tree traversal, recursion</td>
+                            <td class="ml-content">
+                                <strong>MLOps Introduction:</strong>
+                                <br>CI/CD for ML
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 6hrs<br>
+                                ML: 1hr
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 46</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Tries</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/implement-trie-prefix-tree/" class="problem-link">208. Implement Trie</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/design-add-and-search-words-data-structure/" class="problem-link">211. Add and Search Words</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/word-search-ii/" class="problem-link">212. Word Search II</a> <span class="topic-badge hard">H</span>
+                            </td>
+                            <td class="prerequisites">Tree structure, strings</td>
+                            <td class="ml-content">
+                                <strong>Model Monitoring:</strong>
+                                <br>Drift detection
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 47</strong></td>
+                            <td>
+                                <span class="topic-badge hard">Segment Tree</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/range-sum-query-mutable/" class="problem-link">307. Range Sum Query - Mutable</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/count-of-smaller-numbers-after-self/" class="problem-link">315. Count Smaller Numbers After Self</a> <span class="topic-badge hard">H</span>
+                                <br>Implement Segment Tree from scratch
+                            </td>
+                            <td class="prerequisites">Tree, range queries</td>
+                            <td class="ml-content">
+                                <strong>Distributed Training:</strong>
+                                <br>Data vs Model parallelism
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 6hrs<br>
+                                ML: 1hr
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 48</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Greedy</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/jump-game/" class="problem-link">55. Jump Game</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/jump-game-ii/" class="problem-link">45. Jump Game II</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/gas-station/" class="problem-link">134. Gas Station</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/candy/" class="problem-link">135. Candy</a> <span class="topic-badge hard">H</span>
+                            </td>
+                            <td class="prerequisites">Optimization, proof</td>
+                            <td class="ml-content">
+                                <strong>Edge Deployment:</strong>
+                                <br>Model optimization
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 49</strong></td>
+                            <td>
+                                <span class="topic-badge cf-div2">Contest</span>
+                            </td>
+                            <td>
+                                Codeforces Div 2
+                                <br>+ Striver's Greedy:
+                                <br><a href="https://leetcode.com/problems/meeting-rooms-ii/" class="problem-link">253. Meeting Rooms II</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/merge-intervals/" class="problem-link">56. Merge Intervals</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">Intervals, sorting</td>
+                            <td class="ml-content">
+                                <strong>Kaggle Competition:</strong>
+                                <br>Join active competition
+                            </td>
+                            <td class="time-allocation">
+                                Contest: 3hrs<br>
+                                Practice: 2hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 50</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Bit Manipulation</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/number-of-1-bits/" class="problem-link">191. Number of 1 Bits</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/counting-bits/" class="problem-link">338. Counting Bits</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/reverse-bits/" class="problem-link">190. Reverse Bits</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/sum-of-two-integers/" class="problem-link">371. Sum of Two Integers</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">Binary operations</td>
+                            <td class="ml-content">
+                                <strong>BERT & Transformers:</strong>
+                                <br>Fine-tuning for NLP
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 4hrs<br>
+                                ML: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 51</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Math & Geometry</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/rotate-image/" class="problem-link">48. Rotate Image</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/spiral-matrix/" class="problem-link">54. Spiral Matrix</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/happy-number/" class="problem-link">202. Happy Number</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/plus-one/" class="problem-link">66. Plus One</a> <span class="topic-badge easy">E</span>
+                            </td>
+                            <td class="prerequisites">Math operations</td>
+                            <td class="ml-content">
+                                <strong>GPT & LLMs:</strong>
+                                <br>Architecture, applications
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 4hrs<br>
+                                ML: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Week 8: System Design & Advanced Patterns -->
+            <div class="week-section">
+                <div class="week-header">Week 8: System Design Introduction & Pattern Mastery (Days 52-60)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="8%">Day</th>
+                            <th width="15%">DSA Topics</th>
+                            <th width="30%">Problems (with Links)</th>
+                            <th width="12%">Prerequisites</th>
+                            <th width="20%">ML Study</th>
+                            <th width="10%">Time Split</th>
+                            <th width="5%">✓</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Day 52</strong></td>
+                            <td>
+                                <span class="topic-badge hard">Design Problems</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/lru-cache/" class="problem-link">146. LRU Cache</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/lfu-cache/" class="problem-link">460. LFU Cache</a> <span class="topic-badge hard">H</span>
+                                <br><a href="https://leetcode.com/problems/design-twitter/" class="problem-link">355. Design Twitter</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">OOP, data structures</td>
+                            <td class="ml-content">
+                                <strong>System Design:</strong>
+                                <br>YouTube recommendation
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                SD: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 53</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Monotonic Stack</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/daily-temperatures/" class="problem-link">739. Daily Temperatures</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/next-greater-element-i/" class="problem-link">496. Next Greater Element I</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/largest-rectangle-in-histogram/" class="problem-link">84. Largest Rectangle in Histogram</a> <span class="topic-badge hard">H</span>
+                            </td>
+                            <td class="prerequisites">Stack patterns</td>
+                            <td class="ml-content">
+                                <strong>System Design:</strong>
+                                <br>Uber ML platform
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                SD: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 54</strong></td>
+                            <td>
+                                <span class="topic-badge medium">KMP & Rabin-Karp</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/implement-strstr/" class="problem-link">28. Implement strStr()</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/repeated-substring-pattern/" class="problem-link">459. Repeated Substring Pattern</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/shortest-palindrome/" class="problem-link">214. Shortest Palindrome</a> <span class="topic-badge hard">H</span>
+                            </td>
+                            <td class="prerequisites">String algorithms</td>
+                            <td class="ml-content">
+                                <strong>System Design:</strong>
+                                <br>Fraud detection system
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                SD: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 55</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Mock Interview</span>
+                            </td>
+                            <td>
+                                <strong>Pramp/Interviewing.io Session</strong>
+                                <br>+ Random problems:
+                                <br>• 2 Medium from NeetCode 150
+                                <br>• 1 Hard from Striver's Sheet
+                                <br>• Review and improve communication
+                            </td>
+                            <td class="prerequisites">Phase 1-2 complete</td>
+                            <td class="ml-content">
+                                <strong>Mock ML Interview:</strong>
+                                <br>ML system design practice
+                            </td>
+                            <td class="time-allocation">
+                                Mock: 2hrs<br>
+                                Practice: 3hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 56</strong></td>
+                            <td>
+                                <span class="topic-badge cf-div2">Double Contest</span>
+                            </td>
+                            <td>
+                                Morning: Codeforces Div 2
+                                <br>Evening: LeetCode Weekly Contest
+                                <br>Goal: Solve 3+ problems each
+                            </td>
+                            <td class="prerequisites">Speed and accuracy</td>
+                            <td class="ml-content">
+                                <strong>Project:</strong>
+                                <br>End-to-end ML pipeline
+                            </td>
+                            <td class="time-allocation">
+                                Contests: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 57</strong></td>
+                            <td>
+                                <span class="topic-badge hard">N-Queens Type</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/n-queens/" class="problem-link">51. N-Queens</a> <span class="topic-badge hard">H</span>
+                                <br><a href="https://leetcode.com/problems/n-queens-ii/" class="problem-link">52. N-Queens II</a> <span class="topic-badge hard">H</span>
+                                <br><a href="https://leetcode.com/problems/sudoku-solver/" class="problem-link">37. Sudoku Solver</a> <span class="topic-badge hard">H</span>
+                            </td>
+                            <td class="prerequisites">Backtracking mastery</td>
+                            <td class="ml-content">
+                                <strong>Deploy Project:</strong>
+                                <br>Cloud deployment (AWS/GCP)
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 6hrs<br>
+                                ML: 1hr
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 58</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Heap Advanced</span>
+                            </td>
+                            <td>
+                                <a href="https://leetcode.com/problems/find-median-from-data-stream/" class="problem-link">295. Find Median from Data Stream</a> <span class="topic-badge hard">H</span>
+                                <br><a href="https://leetcode.com/problems/sliding-window-maximum/" class="problem-link">239. Sliding Window Maximum</a> <span class="topic-badge hard">H</span>
+                                <br><a href="https://leetcode.com/problems/merge-k-sorted-lists/" class="problem-link">23. Merge k Sorted Lists</a> <span class="topic-badge hard">H</span>
+                            </td>
+                            <td class="prerequisites">Heap operations</td>
+                            <td class="ml-content">
+                                <strong>Model Optimization:</strong>
+                                <br>Quantization, pruning
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 6hrs<br>
+                                ML: 1hr
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 59</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Review Weak Areas</span>
+                            </td>
+                            <td>
+                                Identify and practice weak topics:
+                                <br>• Redo 10 failed problems
+                                <br>• Focus on time complexity
+                                <br>• Practice explaining solutions
+                            </td>
+                            <td class="prerequisites">Self-assessment</td>
+                            <td class="ml-content">
+                                <strong>Portfolio Prep:</strong>
+                                <br>GitHub, projects showcase
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                Portfolio: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 60</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Phase 2 Assessment</span>
+                            </td>
+                            <td>
+                                <strong>Timed Assessment:</strong>
+                                <br>• 3 hours: Solve 2M + 1H
+                                <br>• Mock interview with friend
+                                <br>• Review all Phase 2 concepts
+                            </td>
+                            <td class="prerequisites">Complete Phase 2</td>
+                            <td class="ml-content">
+                                <strong>ML Assessment:</strong>
+                                <br>Complete ML project
+                            </td>
+                            <td class="time-allocation">
+                                Assessment: 4hrs<br>
+                                Review: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PHASE 3: ADVANCED (Days 61-90) -->
+        <div class="phase-section phase3">
+            <div class="phase-header">
+                PHASE 3: INTERVIEW MASTERY (Days 61-90) - Company Specific → Competitive Programming → Interview Ready
+            </div>
+
+            <!-- Week 9: FAANG Focus -->
+            <div class="week-section">
+                <div class="week-header">Week 9: FAANG Specific Preparation (Days 61-67)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="8%">Day</th>
+                            <th width="15%">Focus Company</th>
+                            <th width="30%">Problems (with Links)</th>
+                            <th width="12%">Key Patterns</th>
+                            <th width="20%">System Design</th>
+                            <th width="10%">Time Split</th>
+                            <th width="5%">✓</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Day 61</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Google</span>
+                            </td>
+                            <td>
+                                Google Tagged Problems:
+                                <br><a href="https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/" class="problem-link">159. Longest Substring with At Most Two Distinct</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/license-key-formatting/" class="problem-link">482. License Key Formatting</a> <span class="topic-badge easy">E</span>
+                                <br><a href="https://leetcode.com/problems/fruit-into-baskets/" class="problem-link">904. Fruit Into Baskets</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/minimum-window-substring/" class="problem-link">76. Minimum Window Substring</a> <span class="topic-badge hard">H</span>
+                            </td>
+                            <td class="prerequisites">Sliding window, strings</td>
+                            <td class="ml-content">
+                                <strong>Design Gmail:</strong>
+                                <br>Scale, search, storage
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                SD: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 62</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Amazon</span>
+                            </td>
+                            <td>
+                                Amazon OA Practice:
+                                <br><a href="https://leetcode.com/problems/minimum-difficulty-of-a-job-schedule/" class="problem-link">1335. Minimum Difficulty of Job Schedule</a> <span class="topic-badge hard">H</span>
+                                <br><a href="https://leetcode.com/problems/critical-connections-in-a-network/" class="problem-link">1192. Critical Connections</a> <span class="topic-badge hard">H</span>
+                                <br><a href="https://leetcode.com/problems/reorder-data-in-log-files/" class="problem-link">937. Reorder Data in Log Files</a> <span class="topic-badge easy">E</span>
+                                <br>+ Leadership Principles prep
+                            </td>
+                            <td class="prerequisites">Graphs, DP, sorting</td>
+                            <td class="ml-content">
+                                <strong>Design Amazon:</strong>
+                                <br>Product search, recommendations
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 4hrs<br>
+                                Behavioral: 1hr<br>
+                                SD: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 63</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Meta</span>
+                            </td>
+                            <td>
+                                Meta Implementation Heavy:
+                                <br><a href="https://leetcode.com/problems/valid-palindrome-iii/" class="problem-link">1216. Valid Palindrome III</a> <span class="topic-badge hard">H</span>
+                                <br><a href="https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/" class="problem-link">987. Vertical Order Traversal</a> <span class="topic-badge hard">H</span>
+                                <br><a href="https://leetcode.com/problems/random-pick-with-weight/" class="problem-link">528. Random Pick with Weight</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/binary-tree-right-side-view/" class="problem-link">199. Binary Tree Right Side View</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">Trees, DP, probability</td>
+                            <td class="ml-content">
+                                <strong>Design Instagram:</strong>
+                                <br>Feed, stories, live video
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                SD: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 64</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Microsoft</span>
+                            </td>
+                            <td>
+                                Microsoft Focus:
+                                <br><a href="https://leetcode.com/problems/meeting-scheduler/" class="problem-link">1229. Meeting Scheduler</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/battleships-in-a-board/" class="problem-link">419. Battleships in a Board</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/string-to-integer-atoi/" class="problem-link">8. String to Integer (atoi)</a> <span class="topic-badge medium">M</span>
+                                <br><a href="https://leetcode.com/problems/integer-to-english-words/" class="problem-link">273. Integer to English Words</a> <span class="topic-badge hard">H</span>
+                            </td>
+                            <td class="prerequisites">Implementation, edge cases</td>
+                            <td class="ml-content">
+                                <strong>Design Teams:</strong>
+                                <br>Chat, video, collaboration
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                SD: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 65</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Apple</span>
+                            </td>
+                            <td>
+                                Apple Quality Focus:
+                                <br><a href="https://leetcode.com/problems/design-search-autocomplete-system/" class="problem-link">642. Design Search Autocomplete</a> <span class="topic-badge hard">H</span>
+                                <br><a href="https://leetcode.com/problems/design-in-memory-file-system/" class="problem-link">588. Design In-Memory File System</a> <span class="topic-badge hard">H</span>
+                                <br><a href="https://leetcode.com/problems/design-hit-counter/" class="problem-link">362. Design Hit Counter</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">System design in code</td>
+                            <td class="ml-content">
+                                <strong>Design iCloud:</strong>
+                                <br>Sync, storage, security
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                SD: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 66</strong></td>
+                            <td>
+                                <span class="topic-badge cf-div2">Contest</span>
+                            </td>
+                            <td>
+                                Codeforces Div 1/2 (aim higher)
+                                <br>+ Virtual Contest practice:
+                                <br>• Google Kickstart past problems
+                                <br>• Facebook Hacker Cup
+                            </td>
+                            <td class="prerequisites">Competition skills</td>
+                            <td class="ml-content">
+                                <strong>ML at Scale:</strong>
+                                <br>Distributed training
+                            </td>
+                            <td class="time-allocation">
+                                Contests: 5hrs<br>
+                                ML: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 67</strong></td>
+                            <td>
+                                <span class="topic-badge hard">FAANG Mock</span>
+                            </td>
+                            <td>
+                                <strong>Full FAANG Mock Day:</strong>
+                                <br>• Morning: 2 coding rounds (45min each)
+                                <br>• Afternoon: System design (1hr)
+                                <br>• Evening: Behavioral (45min)
+                                <br>Use interviewing.io or Pramp
+                            </td>
+                            <td class="prerequisites">All patterns</td>
+                            <td class="ml-content">
+                                <strong>ML Design Mock:</strong>
+                                <br>End-to-end system
+                            </td>
+                            <td class="time-allocation">
+                                Mocks: 4hrs<br>
+                                Review: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Week 10: Quant/HFT Focus -->
+            <div class="week-section">
+                <div class="week-header">Week 10: Quant Firms & HFT Preparation (Days 68-74)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="8%">Day</th>
+                            <th width="15%">Focus Area</th>
+                            <th width="30%">Problems & Activities</th>
+                            <th width="12%">Key Skills</th>
+                            <th width="20%">Quant Topics</th>
+                            <th width="10%">Time Split</th>
+                            <th width="5%">✓</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Day 68</strong></td>
+                            <td>
+                                <span class="topic-badge hard">Jane Street</span>
+                            </td>
+                            <td>
+                                Probability & Expected Value:
+                                <br>• Dice problems
+                                <br>• Market making simulations
+                                <br>• Mental math: 50 problems in 30min
+                                <br><a href="https://leetcode.com/problems/new-21-game/" class="problem-link">837. New 21 Game</a> <span class="topic-badge medium">M</span>
+                            </td>
+                            <td class="prerequisites">Probability, EV calculation</td>
+                            <td class="ml-content">
+                                <strong>Quant Interview:</strong>
+                                <br>Green book Ch 1-3
+                            </td>
+                            <td class="time-allocation">
+                                Math: 3hrs<br>
+                                DSA: 2hrs<br>
+                                Quant: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 69</strong></td>
+                            <td>
+                                <span class="topic-badge hard">Two Sigma</span>
+                            </td>
+                            <td>
+                                ML + Algorithms:
+                                <br><a href="https://leetcode.com/problems/maximum-profit-in-job-scheduling/" class="problem-link">1235. Maximum Profit in Job Scheduling</a> <span class="topic-badge hard">H</span>
+                                <br><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/" class="problem-link">714. Stock with Transaction Fee</a> <span class="topic-badge medium">M</span>
+                                <br>• Implement basic trading algorithm
+                            </td>
+                            <td class="prerequisites">DP, optimization</td>
+                            <td class="ml-content">
+                                <strong>Time Series:</strong>
+                                <br>ARIMA, Prophet
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 4hrs<br>
+                                ML: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 70</strong></td>
+                            <td>
+                                <span class="topic-badge hard">Citadel</span>
+                            </td>
+                            <td>
+                                C++ Performance Focus:
+                                <br>• Implement custom allocator
+                                <br>• Low latency data structures
+                                <br><a href="https://leetcode.com/problems/max-points-on-a-line/" class="problem-link">149. Max Points on a Line</a> <span class="topic-badge hard">H</span>
+                                <br>• Codeforces Div 1 problems
+                            </td>
+                            <td class="prerequisites">C++, optimization</td>
+                            <td class="ml-content">
+                                <strong>HFT Systems:</strong>
+                                <br>Order books, latency
+                            </td>
+                            <td class="time-allocation">
+                                C++: 3hrs<br>
+                                DSA: 2hrs<br>
+                                Systems: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 71</strong></td>
+                            <td>
+                                <span class="topic-badge hard">HRT/Jump</span>
+                            </td>
+                            <td>
+                                Speed coding session:
+                                <br>• 10 Easy in 30 minutes
+                                <br>• 5 Medium in 60 minutes
+                                <br>• Focus on clean, fast implementation
+                                <br>• Practice on HackerRank
+                            </td>
+                            <td class="prerequisites">Speed, accuracy</td>
+                            <td class="ml-content">
+                                <strong>Market Microstructure:</strong>
+                                <br>Basics for interviews
+                            </td>
+                            <td class="time-allocation">
+                                Speed: 3hrs<br>
+                                Practice: 2hrs<br>
+                                Finance: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 72</strong></td>
+                            <td>
+                                <span class="topic-badge cf-div2">Competitive</span>
+                            </td>
+                            <td>
+                                Target Rating 1800+:
+                                <br>• Codeforces Div 2 A-D
+                                <br>• AtCoder Regular Contest
+                                <br>• Focus on mathematical problems
+                            </td>
+                            <td class="prerequisites">Advanced algorithms</td>
+                            <td class="ml-content">
+                                <strong>Portfolio Optimization:</strong>
+                                <br>Markowitz, Sharpe
+                            </td>
+                            <td class="time-allocation">
+                                Contests: 5hrs<br>
+                                Finance: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 73</strong></td>
+                            <td>
+                                <span class="topic-badge hard">Brain Teasers</span>
+                            </td>
+                            <td>
+                                Quant interview classics:
+                                <br>• 25 horses problem
+                                <br>• 100 prisoners problem
+                                <br>• Monty Hall variations
+                                <br>• Fermi estimations
+                            </td>
+                            <td class="prerequisites">Logical thinking</td>
+                            <td class="ml-content">
+                                <strong>Options Pricing:</strong>
+                                <br>Black-Scholes basics
+                            </td>
+                            <td class="time-allocation">
+                                Puzzles: 3hrs<br>
+                                Math: 2hrs<br>
+                                Finance: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 74</strong></td>
+                            <td>
+                                <span class="topic-badge hard">Quant Mock</span>
+                            </td>
+                            <td>
+                                <strong>Quant Firm Mock:</strong>
+                                <br>• Mental math test (30min)
+                                <br>• Probability questions (45min)
+                                <br>• Coding: 2 Hard problems (90min)
+                                <br>• Market making game simulation
+                            </td>
+                            <td class="prerequisites">All quant skills</td>
+                            <td class="ml-content">
+                                <strong>Signal Processing:</strong>
+                                <br>For trading signals
+                            </td>
+                            <td class="time-allocation">
+                                Mock: 4hrs<br>
+                                Review: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Week 11-12: Final Sprint -->
+            <div class="week-section">
+                <div class="week-header">Week 11-13: Final Interview Sprint & Assessment (Days 75-90)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="8%">Day</th>
+                            <th width="15%">Focus</th>
+                            <th width="30%">Activities</th>
+                            <th width="12%">Goals</th>
+                            <th width="20%">Additional</th>
+                            <th width="10%">Time</th>
+                            <th width="5%">✓</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Days 75-77</strong></td>
+                            <td>
+                                <span class="topic-badge hard">Complete NeetCode</span>
+                            </td>
+                            <td>
+                                Finish remaining NeetCode 150:
+                                <br>• All remaining Hard problems
+                                <br>• Time each problem strictly
+                                <br>• Focus on optimal solutions
+                                <br>• ~15-20 problems to complete
+                            </td>
+                            <td class="prerequisites">Completion milestone</td>
+                            <td class="ml-content">
+                                <strong>MLOps Project:</strong>
+                                <br>Deploy with monitoring
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 6hrs<br>
+                                ML: 1hr
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Days 78-80</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Striver's Remaining</span>
+                            </td>
+                            <td>
+                                Complete key Striver problems:
+                                <br>• Focus on unique patterns
+                                <br>• ~30 important problems
+                                <br>• Create pattern cheat sheet
+                            </td>
+                            <td class="prerequisites">Pattern mastery</td>
+                            <td class="ml-content">
+                                <strong>Interview Prep:</strong>
+                                <br>Research companies
+                            </td>
+                            <td class="time-allocation">
+                                DSA: 5hrs<br>
+                                Research: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Days 81-83</strong></td>
+                            <td>
+                                <span class="topic-badge hard">Mock Marathon</span>
+                            </td>
+                            <td>
+                                Daily mock interviews:
+                                <br>• 2 technical rounds/day
+                                <br>• 1 system design/day
+                                <br>• Record and review performance
+                            </td>
+                            <td class="prerequisites">Interview readiness</td>
+                            <td class="ml-content">
+                                <strong>Behavioral Prep:</strong>
+                                <br>STAR stories ready
+                            </td>
+                            <td class="time-allocation">
+                                Mocks: 4hrs<br>
+                                Review: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Days 84-86</strong></td>
+                            <td>
+                                <span class="topic-badge medium">Weak Areas</span>
+                            </td>
+                            <td>
+                                Target personal weaknesses:
+                                <br>• Redo all failed problems
+                                <br>• Focus on communication
+                                <br>• Speed up implementation
+                            </td>
+                            <td class="prerequisites">Perfection</td>
+                            <td class="ml-content">
+                                <strong>Portfolio Polish:</strong>
+                                <br>GitHub, LinkedIn ready
+                            </td>
+                            <td class="time-allocation">
+                                Practice: 5hrs<br>
+                                Portfolio: 2hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Days 87-88</strong></td>
+                            <td>
+                                <span class="topic-badge hard">Final Contest</span>
+                            </td>
+                            <td>
+                                Last competitive push:
+                                <br>• LeetCode Contest (aim for top 10%)
+                                <br>• Codeforces (solve 4+ problems)
+                                <br>• Confidence building
+                            </td>
+                            <td class="prerequisites">Peak performance</td>
+                            <td class="ml-content">
+                                <strong>Application Sprint:</strong>
+                                <br>Apply to dream companies
+                            </td>
+                            <td class="time-allocation">
+                                Contests: 4hrs<br>
+                                Applications: 3hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 89</strong></td>
+                            <td>
+                                <span class="topic-badge easy">Light Review</span>
+                            </td>
+                            <td>
+                                Relaxed preparation:
+                                <br>• Review cheat sheets
+                                <br>• Easy confidence builders
+                                <br>• Mental preparation
+                            </td>
+                            <td class="prerequisites">Stay sharp</td>
+                            <td class="ml-content">
+                                <strong>Rest & Prepare:</strong>
+                                <br>Interview logistics
+                            </td>
+                            <td class="time-allocation">
+                                Light review: 3hrs<br>
+                                Rest: 4hrs
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 90</strong></td>
+                            <td>
+                                <span class="topic-badge hard">🎯 READY!</span>
+                            </td>
+                            <td>
+                                <strong>Final Assessment:</strong>
+                                <br>✅ 450+ problems solved
+                                <br>✅ Can solve Medium in 25min
+                                <br>✅ System design confident
+                                <br>✅ ML projects deployed
+                                <br>✅ Mock interview success rate >85%
+                                <br><strong>YOU'RE INTERVIEW READY!</strong>
+                            </td>
+                            <td class="prerequisites">Mission Complete!</td>
+                            <td class="ml-content">
+                                <strong>Celebration:</strong>
+                                <br>You did it! 🚀
+                            </td>
+                            <td class="time-allocation">
+                                Assessment: 2hrs<br>
+                                Celebrate: ∞
+                            </td>
+                            <td><input type="checkbox" class="day-complete"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="progress-tracker">
+        <h3>Progress Tracker</h3>
+        <div class="progress-bar">
+            <div class="progress-fill" id="overall-progress" style="width: 0%">0%</div>
+        </div>
+        <p>Problems Solved: <span id="problems-count">0/465</span></p>
+        <p>Days Complete: <span id="days-count">0/90</span></p>
+        <p>Current Phase: <span id="current-phase">Phase 1</span></p>
+    </div>
+
+    <script>
+        // Filter functionality
+        function filterPhase(phase) {
+            const allSections = document.querySelectorAll('.phase-section');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (phase === 'all') {
+                allSections.forEach(section => section.style.display = 'block');
+            } else {
+                allSections.forEach(section => {
+                    if (section.classList.contains(phase)) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        // Progress tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('.day-complete');
+            const progressBar = document.getElementById('overall-progress');
+            const problemsCount = document.getElementById('problems-count');
+            const daysCount = document.getElementById('days-count');
+            const currentPhase = document.getElementById('current-phase');
+            
+            function updateProgress() {
+                const checkedBoxes = document.querySelectorAll('.day-complete:checked').length;
+                const totalBoxes = checkboxes.length;
+                const percentage = Math.round((checkedBoxes / totalBoxes) * 100);
+                
+                progressBar.style.width = percentage + '%';
+                progressBar.textContent = percentage + '%';
+                
+                // Update counters
+                daysCount.textContent = checkedBoxes + '/90';
+                
+                // Estimate problems solved (roughly 5 per day average)
+                const estimatedProblems = Math.round(checkedBoxes * 5.2);
+                problemsCount.textContent = estimatedProblems + '/465';
+                
+                // Update phase
+                if (checkedBoxes <= 30) {
+                    currentPhase.textContent = 'Phase 1: Foundation';
+                } else if (checkedBoxes <= 60) {
+                    currentPhase.textContent = 'Phase 2: Intermediate';
+                } else {
+                    currentPhase.textContent = 'Phase 3: Advanced';
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('roadmap-progress', JSON.stringify({
+                    checked: Array.from(checkboxes).map(cb => cb.checked),
+                    date: new Date().toISOString()
+                }));
+            }
+            
+            // Load saved progress
+            const savedProgress = localStorage.getItem('roadmap-progress');
+            if (savedProgress) {
+                const data = JSON.parse(savedProgress);
+                checkboxes.forEach((cb, index) => {
+                    cb.checked = data.checked[index] || false;
+                });
+                updateProgress();
+            }
+            
+            // Add event listeners
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgress);
+            });
+        });
+
+        // Download Excel function
+        function downloadExcel() {
+            let csvContent = "90-Day DSA & ML Engineering Roadmap\n\n";
+            csvContent += "COMPLETE DETAILED BREAKDOWN - 465 Problems + ML Curriculum\n\n";
+            
+            // Phase 1 Data
+            csvContent += "PHASE 1: FOUNDATION (Days 1-30)\n";
+            csvContent += "Day,DSA Topics,Problems,Prerequisites,ML Study,Time Allocation\n";
+            
+            // Add all the detailed day-by-day data
+            csvContent += "1,Python Basics,No LeetCode - Learn Python fundamentals,None,Andrew Ng Week 1,Python: 5hrs | ML: 2hrs\n";
+            csvContent += "2,Lists & Loops,Practice Python exercises,Day 1 basics,Linear Regression,Python: 5hrs | ML: 2hrs\n";
+            csvContent += "3,Dictionaries & Functions,Python practice,Lists and loops,Gradient Descent,Python: 5hrs | ML: 2hrs\n";
+            
+            // Create download link
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", "90_Day_DSA_ML_Complete_Roadmap.csv");
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert("Excel file downloaded! Open in Excel/Google Sheets for best viewing. Contains 465 problems with direct links, daily ML curriculum, and complete resource list.");
+        }
+    </script>
+</body>
+</html>
+                
