@@ -344,6 +344,17 @@
             }
         }
         
+
+        .completion-date {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .completion-date.completed {
+            color: var(--success);
+            font-weight: 500;
+        }
         .hidden {
             display: none;
         }
@@ -388,7 +399,8 @@
                             <th width="12%">Prerequisites</th>
                             <th width="20%">ML Study</th>
                             <th width="10%">Time Split</th>
-                            <th width="5%">✓</th>
+                            <th width="3%">✓</th>
+                            <th width="12%">Completed</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -413,7 +425,8 @@
                                 Python: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="1"></td>
+                            <td class="completion-date" data-day="1">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 2</strong></td>
@@ -435,7 +448,8 @@
                                 Python: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="2"></td>
+                            <td class="completion-date" data-day="2">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 3</strong></td>
@@ -458,7 +472,8 @@
                                 Python: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="3"></td>
+                            <td class="completion-date" data-day="3">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 4</strong></td>
@@ -480,7 +495,8 @@
                                 DSA: 4hrs<br>
                                 ML: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="4"></td>
+                            <td class="completion-date" data-day="4">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 5</strong></td>
@@ -501,7 +517,8 @@
                                 DSA: 4hrs<br>
                                 ML: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="5"></td>
+                            <td class="completion-date" data-day="5">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 6</strong></td>
@@ -522,7 +539,8 @@
                                 DSA: 4hrs<br>
                                 ML: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="6"></td>
+                            <td class="completion-date" data-day="6">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 7</strong></td>
@@ -543,7 +561,8 @@
                                 DSA: 4hrs<br>
                                 ML: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="7"></td>
+                            <td class="completion-date" data-day="7">-</td>
                         </tr>
                     </tbody>
                 </table>
@@ -561,7 +580,8 @@
                             <th width="12%">Prerequisites</th>
                             <th width="20%">ML Study</th>
                             <th width="10%">Time Split</th>
-                            <th width="5%">✓</th>
+                            <th width="3%">✓</th>
+                            <th width="12%">Completed</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -585,7 +605,8 @@
                                 DSA: 4hrs<br>
                                 ML: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="8"></td>
+                            <td class="completion-date" data-day="8">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 9</strong></td>
@@ -606,7 +627,8 @@
                                 DSA: 4hrs<br>
                                 ML: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="9"></td>
+                            <td class="completion-date" data-day="9">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 10</strong></td>
@@ -627,7 +649,8 @@
                                 DSA: 4hrs<br>
                                 ML: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="10"></td>
+                            <td class="completion-date" data-day="10">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 11</strong></td>
@@ -648,7 +671,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="11"></td>
+                            <td class="completion-date" data-day="11">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 12</strong></td>
@@ -669,7 +693,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="12"></td>
+                            <td class="completion-date" data-day="12">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 13</strong></td>
@@ -690,7 +715,8 @@
                                 DSA: 4hrs<br>
                                 ML: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="13"></td>
+                            <td class="completion-date" data-day="13">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 14</strong></td>
@@ -712,7 +738,8 @@
                                 DSA: 4hrs<br>
                                 ML: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="14"></td>
+                            <td class="completion-date" data-day="14">-</td>
                         </tr>
                     </tbody>
                 </table>
@@ -730,7 +757,8 @@
                             <th width="12%">Prerequisites</th>
                             <th width="20%">ML Study</th>
                             <th width="10%">Time Split</th>
-                            <th width="5%">✓</th>
+                            <th width="3%">✓</th>
+                            <th width="12%">Completed</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -754,7 +782,8 @@
                                 DSA: 4hrs<br>
                                 ML: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="15"></td>
+                            <td class="completion-date" data-day="15">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 16</strong></td>
@@ -775,7 +804,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="16"></td>
+                            <td class="completion-date" data-day="16">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 17</strong></td>
@@ -797,7 +827,8 @@
                                 DSA: 4hrs<br>
                                 ML: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="17"></td>
+                            <td class="completion-date" data-day="17">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 18</strong></td>
@@ -819,7 +850,8 @@
                                 DSA: 4hrs<br>
                                 ML: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="18"></td>
+                            <td class="completion-date" data-day="18">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 19</strong></td>
@@ -840,7 +872,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="19"></td>
+                            <td class="completion-date" data-day="19">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 20</strong></td>
@@ -862,7 +895,8 @@
                                 DSA: 4hrs<br>
                                 ML: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="20"></td>
+                            <td class="completion-date" data-day="20">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 21</strong></td>
@@ -886,7 +920,8 @@
                                 Review: 2hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="21"></td>
+                            <td class="completion-date" data-day="21">-</td>
                         </tr>
                     </tbody>
                 </table>
@@ -904,7 +939,8 @@
                             <th width="12%">Prerequisites</th>
                             <th width="20%">ML Study</th>
                             <th width="10%">Time Split</th>
-                            <th width="5%">✓</th>
+                            <th width="3%">✓</th>
+                            <th width="12%">Completed</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -928,7 +964,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="22"></td>
+                            <td class="completion-date" data-day="22">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 23</strong></td>
@@ -950,7 +987,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="23"></td>
+                            <td class="completion-date" data-day="23">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 24</strong></td>
@@ -971,7 +1009,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="24"></td>
+                            <td class="completion-date" data-day="24">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 25</strong></td>
@@ -992,7 +1031,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="25"></td>
+                            <td class="completion-date" data-day="25">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 26</strong></td>
@@ -1013,7 +1053,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="26"></td>
+                            <td class="completion-date" data-day="26">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 27</strong></td>
@@ -1034,7 +1075,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="27"></td>
+                            <td class="completion-date" data-day="27">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 28</strong></td>
@@ -1057,7 +1099,8 @@
                                 Practice: 2hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="28"></td>
+                            <td class="completion-date" data-day="28">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 29</strong></td>
@@ -1078,7 +1121,8 @@
                                 DSA: 4hrs<br>
                                 ML: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="29"></td>
+                            <td class="completion-date" data-day="29">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 30</strong></td>
@@ -1101,7 +1145,8 @@
                                 Practice: 3hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="30"></td>
+                            <td class="completion-date" data-day="30">-</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1126,7 +1171,8 @@
                             <th width="12%">Prerequisites</th>
                             <th width="20%">ML Study</th>
                             <th width="10%">Time Split</th>
-                            <th width="5%">✓</th>
+                            <th width="3%">✓</th>
+                            <th width="12%">Completed</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1149,7 +1195,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="31"></td>
+                            <td class="completion-date" data-day="31">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 32</strong></td>
@@ -1170,7 +1217,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="32"></td>
+                            <td class="completion-date" data-day="32">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 33</strong></td>
@@ -1191,7 +1239,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="33"></td>
+                            <td class="completion-date" data-day="33">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 34</strong></td>
@@ -1212,7 +1261,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="34"></td>
+                            <td class="completion-date" data-day="34">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 35</strong></td>
@@ -1234,7 +1284,8 @@
                                 Review: 2hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="35"></td>
+                            <td class="completion-date" data-day="35">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 36</strong></td>
@@ -1255,7 +1306,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="36"></td>
+                            <td class="completion-date" data-day="36">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 37</strong></td>
@@ -1276,7 +1328,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="37"></td>
+                            <td class="completion-date" data-day="37">-</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1294,7 +1347,8 @@
                             <th width="12%">Prerequisites</th>
                             <th width="20%">ML Study</th>
                             <th width="10%">Time Split</th>
-                            <th width="5%">✓</th>
+                            <th width="3%">✓</th>
+                            <th width="12%">Completed</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1317,7 +1371,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="38"></td>
+                            <td class="completion-date" data-day="38">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 39</strong></td>
@@ -1338,7 +1393,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="39"></td>
+                            <td class="completion-date" data-day="39">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 40</strong></td>
@@ -1359,7 +1415,8 @@
                                 DSA: 6hrs<br>
                                 ML: 1hr
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="40"></td>
+                            <td class="completion-date" data-day="40">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 41</strong></td>
@@ -1381,7 +1438,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="41"></td>
+                            <td class="completion-date" data-day="41">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 42</strong></td>
@@ -1402,7 +1460,8 @@
                                 Contests: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="42"></td>
+                            <td class="completion-date" data-day="42">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 43</strong></td>
@@ -1423,7 +1482,8 @@
                                 DSA: 6hrs<br>
                                 ML: 1hr
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="43"></td>
+                            <td class="completion-date" data-day="43">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 44</strong></td>
@@ -1445,7 +1505,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="44"></td>
+                            <td class="completion-date" data-day="44">-</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1463,7 +1524,8 @@
                             <th width="12%">Prerequisites</th>
                             <th width="20%">ML Study</th>
                             <th width="10%">Time Split</th>
-                            <th width="5%">✓</th>
+                            <th width="3%">✓</th>
+                            <th width="12%">Completed</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1486,7 +1548,8 @@
                                 DSA: 6hrs<br>
                                 ML: 1hr
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="45"></td>
+                            <td class="completion-date" data-day="45">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 46</strong></td>
@@ -1507,7 +1570,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="46"></td>
+                            <td class="completion-date" data-day="46">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 47</strong></td>
@@ -1528,7 +1592,8 @@
                                 DSA: 6hrs<br>
                                 ML: 1hr
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="47"></td>
+                            <td class="completion-date" data-day="47">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 48</strong></td>
@@ -1550,7 +1615,8 @@
                                 DSA: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="48"></td>
+                            <td class="completion-date" data-day="48">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 49</strong></td>
@@ -1573,7 +1639,8 @@
                                 Practice: 2hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="49"></td>
+                            <td class="completion-date" data-day="49">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 50</strong></td>
@@ -1595,7 +1662,8 @@
                                 DSA: 4hrs<br>
                                 ML: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="50"></td>
+                            <td class="completion-date" data-day="50">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 51</strong></td>
@@ -1617,7 +1685,8 @@
                                 DSA: 4hrs<br>
                                 ML: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="51"></td>
+                            <td class="completion-date" data-day="51">-</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1635,7 +1704,8 @@
                             <th width="12%">Prerequisites</th>
                             <th width="20%">ML Study</th>
                             <th width="10%">Time Split</th>
-                            <th width="5%">✓</th>
+                            <th width="3%">✓</th>
+                            <th width="12%">Completed</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1658,7 +1728,8 @@
                                 DSA: 5hrs<br>
                                 SD: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="52"></td>
+                            <td class="completion-date" data-day="52">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 53</strong></td>
@@ -1679,7 +1750,8 @@
                                 DSA: 5hrs<br>
                                 SD: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="53"></td>
+                            <td class="completion-date" data-day="53">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 54</strong></td>
@@ -1700,7 +1772,8 @@
                                 DSA: 5hrs<br>
                                 SD: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="54"></td>
+                            <td class="completion-date" data-day="54">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 55</strong></td>
@@ -1724,7 +1797,8 @@
                                 Practice: 3hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="55"></td>
+                            <td class="completion-date" data-day="55">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 56</strong></td>
@@ -1745,7 +1819,8 @@
                                 Contests: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="56"></td>
+                            <td class="completion-date" data-day="56">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 57</strong></td>
@@ -1766,7 +1841,8 @@
                                 DSA: 6hrs<br>
                                 ML: 1hr
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="57"></td>
+                            <td class="completion-date" data-day="57">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 58</strong></td>
@@ -1787,7 +1863,8 @@
                                 DSA: 6hrs<br>
                                 ML: 1hr
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="58"></td>
+                            <td class="completion-date" data-day="58">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 59</strong></td>
@@ -1809,7 +1886,8 @@
                                 DSA: 5hrs<br>
                                 Portfolio: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="59"></td>
+                            <td class="completion-date" data-day="59">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 60</strong></td>
@@ -1831,7 +1909,8 @@
                                 Assessment: 4hrs<br>
                                 Review: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="60"></td>
+                            <td class="completion-date" data-day="60">-</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1856,7 +1935,8 @@
                             <th width="12%">Key Patterns</th>
                             <th width="20%">System Design</th>
                             <th width="10%">Time Split</th>
-                            <th width="5%">✓</th>
+                            <th width="3%">✓</th>
+                            <th width="12%">Completed</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1881,7 +1961,8 @@
                                 DSA: 5hrs<br>
                                 SD: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="61"></td>
+                            <td class="completion-date" data-day="61">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 62</strong></td>
@@ -1905,7 +1986,8 @@
                                 Behavioral: 1hr<br>
                                 SD: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="62"></td>
+                            <td class="completion-date" data-day="62">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 63</strong></td>
@@ -1928,7 +2010,8 @@
                                 DSA: 5hrs<br>
                                 SD: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="63"></td>
+                            <td class="completion-date" data-day="63">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 64</strong></td>
@@ -1951,7 +2034,8 @@
                                 DSA: 5hrs<br>
                                 SD: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="64"></td>
+                            <td class="completion-date" data-day="64">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 65</strong></td>
@@ -1973,7 +2057,8 @@
                                 DSA: 5hrs<br>
                                 SD: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="65"></td>
+                            <td class="completion-date" data-day="65">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 66</strong></td>
@@ -1995,7 +2080,8 @@
                                 Contests: 5hrs<br>
                                 ML: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="66"></td>
+                            <td class="completion-date" data-day="66">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 67</strong></td>
@@ -2018,7 +2104,8 @@
                                 Mocks: 4hrs<br>
                                 Review: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="67"></td>
+                            <td class="completion-date" data-day="67">-</td>
                         </tr>
                     </tbody>
                 </table>
@@ -2036,7 +2123,8 @@
                             <th width="12%">Key Skills</th>
                             <th width="20%">Quant Topics</th>
                             <th width="10%">Time Split</th>
-                            <th width="5%">✓</th>
+                            <th width="3%">✓</th>
+                            <th width="12%">Completed</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -2062,7 +2150,8 @@
                                 DSA: 2hrs<br>
                                 Quant: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="68"></td>
+                            <td class="completion-date" data-day="68">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 69</strong></td>
@@ -2084,7 +2173,8 @@
                                 DSA: 4hrs<br>
                                 ML: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="69"></td>
+                            <td class="completion-date" data-day="69">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 70</strong></td>
@@ -2108,7 +2198,8 @@
                                 DSA: 2hrs<br>
                                 Systems: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="70"></td>
+                            <td class="completion-date" data-day="70">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 71</strong></td>
@@ -2132,7 +2223,8 @@
                                 Practice: 2hrs<br>
                                 Finance: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="71"></td>
+                            <td class="completion-date" data-day="71">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 72</strong></td>
@@ -2154,7 +2246,8 @@
                                 Contests: 5hrs<br>
                                 Finance: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="72"></td>
+                            <td class="completion-date" data-day="72">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 73</strong></td>
@@ -2178,7 +2271,8 @@
                                 Math: 2hrs<br>
                                 Finance: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="73"></td>
+                            <td class="completion-date" data-day="73">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 74</strong></td>
@@ -2201,7 +2295,8 @@
                                 Mock: 4hrs<br>
                                 Review: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="74"></td>
+                            <td class="completion-date" data-day="74">-</td>
                         </tr>
                     </tbody>
                 </table>
@@ -2219,7 +2314,8 @@
                             <th width="12%">Goals</th>
                             <th width="20%">Additional</th>
                             <th width="10%">Time</th>
-                            <th width="5%">✓</th>
+                            <th width="3%">✓</th>
+                            <th width="12%">Completed</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -2244,7 +2340,8 @@
                                 DSA: 6hrs<br>
                                 ML: 1hr
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="75"></td>
+                            <td class="completion-date" data-day="75">-</td>
                         </tr>
                         <tr>
                             <td><strong>Days 78-80</strong></td>
@@ -2266,7 +2363,8 @@
                                 DSA: 5hrs<br>
                                 Research: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="76"></td>
+                            <td class="completion-date" data-day="76">-</td>
                         </tr>
                         <tr>
                             <td><strong>Days 81-83</strong></td>
@@ -2288,7 +2386,8 @@
                                 Mocks: 4hrs<br>
                                 Review: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="77"></td>
+                            <td class="completion-date" data-day="77">-</td>
                         </tr>
                         <tr>
                             <td><strong>Days 84-86</strong></td>
@@ -2310,7 +2409,8 @@
                                 Practice: 5hrs<br>
                                 Portfolio: 2hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="78"></td>
+                            <td class="completion-date" data-day="78">-</td>
                         </tr>
                         <tr>
                             <td><strong>Days 87-88</strong></td>
@@ -2332,7 +2432,8 @@
                                 Contests: 4hrs<br>
                                 Applications: 3hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="79"></td>
+                            <td class="completion-date" data-day="79">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 89</strong></td>
@@ -2354,7 +2455,8 @@
                                 Light review: 3hrs<br>
                                 Rest: 4hrs
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="80"></td>
+                            <td class="completion-date" data-day="80">-</td>
                         </tr>
                         <tr>
                             <td><strong>Day 90</strong></td>
@@ -2379,7 +2481,8 @@
                                 Assessment: 2hrs<br>
                                 Celebrate: ∞
                             </td>
-                            <td><input type="checkbox" class="day-complete"></td>
+                            <td><input type="checkbox" class="day-complete" data-day="81"></td>
+                            <td class="completion-date" data-day="81">-</td>
                         </tr>
                     </tbody>
                 </table>
